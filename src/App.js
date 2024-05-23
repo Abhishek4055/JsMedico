@@ -1,35 +1,29 @@
-import React from "react";
+import { useSelector } from "react-redux";
+import Header from "./component/Header";
+import LoginFrom from "./component/utils/LoginFrom";
+import { Outlet } from "react-router-dom";
+import UserInfoModule from "./component/pages/UserInfoModule";
 
-import Box from "@mui/material/Box";
-import Header from "./components/header/Header";
-import LeftNav from "./components/navigation/LeftNav";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Cart from "./components/cart/Cart";
-import Home from "./components/home/Home";
-import Login from "./components/logIn/Login";
-import SignUp from "./components/signUp/SignUp";
-import { Toolbar } from "@mui/material";
-function App() {
+export default function App() {
+  const { isLogin, isShowUserInfo } = useSelector((state) => state.users);
+  // const [isShowUserInfo, setIsShowUserInfo] = useState(false);
+
+  console.log("is", isShowUserInfo);
   return (
     <>
-      <Box sx={{ display: "flex" }}>
-        <Header />
-        <LeftNav />
-
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <Toolbar />
-          <BrowserRouter>
-            <Routes>
-              <Route exact path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<SignUp />} />
-              <Route path="/cart" element={<Cart />} />
-            </Routes>
-          </BrowserRouter>
-        </Box>
-      </Box>
+      {!isLogin && (
+        <div className="login-wraper">
+          <LoginFrom />
+        </div>
+      )}
+      <Header />
+      {isShowUserInfo && <UserInfoModule />}
+      <Outlet />
+      {/* <InputField /> */}
+      {/* <section className="big-feature-dsection"></section>
+      <section className="big-feature-dsection"></section>
+      <footer></footer>
+      <div className="subfooter"></div>  */}
     </>
   );
 }
-
-export default App;
