@@ -3,7 +3,9 @@ import React from "react";
 const Card = ({ item, cardStyle }) => {
   return (
     <>
-      <img src={item.imageUrl} alt={item.type} className="equipment-img" />
+      <div className="image-container">
+        <img src={item.imageUrl} alt={item.type} className="equipment-img" />
+      </div>
       <div className={cardStyle}>
         <h4>
           <b>{item.type}</b>

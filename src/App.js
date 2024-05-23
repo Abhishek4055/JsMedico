@@ -6,9 +6,6 @@ import UserInfoModule from "./component/pages/UserInfoModule";
 
 export default function App() {
   const { isLogin, isShowUserInfo } = useSelector((state) => state.users);
-  // const [isShowUserInfo, setIsShowUserInfo] = useState(false);
-
-  console.log("is", isShowUserInfo);
   return (
     <>
       {!isLogin && (

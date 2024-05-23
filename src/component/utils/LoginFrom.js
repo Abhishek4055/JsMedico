@@ -11,7 +11,6 @@ function LoginFrom() {
   const [mobileNo, setMobileNo] = useState({ molileNo: "" });
   const dispatch = useDispatch((state) => state.userDeta);
   const { usersData } = useSelector((state) => state.users);
-  console.log("userData", usersData);
   const validate = (values) => {
     let errors = {};
     if (!values.molileNo) {

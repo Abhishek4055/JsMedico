@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { TiThMenu } from "react-icons/ti";
 import { MdOutlineShoppingCart } from "react-icons/md";
 // import { IoHome } from "react-icons/io5";
@@ -12,17 +12,19 @@ import Button from "./Button";
 import { Link } from "react-router-dom";
 import Input from "./utils/InputComp";
 import { dummyEquipment } from "./dummyData";
-import { setIsShowUserInfo } from "../redux/slice";
+import { setIsShowUserInfo, setSearchedData } from "../redux/slice";
 
 const Header = () => {
-  const {
-    // isOpenInfoOverlay,
-    usersData,
-    // isLogin,
-    noOfItemInCart,
-    isShowUserInfo,
-  } = useSelector((state) => state.users);
+  const { usersData, noOfItemInCart, isShowUserInfo, searchedData } =
+    useSelector((state) => state.users);
+  const [test, setTest] = useState(searchedData);
   const dispatch = useDispatch();
+
+  const searchHandlerWithDebounce = (value) => {
+    // console.log(value);
+    dispatch(setSearchedData(value));
+  };
+
   return (
     <>
       <div className="gird-container top-banner">
@@ -47,14 +49,8 @@ const Header = () => {
             placeholder="Search..."
             inputFileldStyle="search-box"
             formConstainerStyle="input-search-container"
-            // value={formik.values.medicines}
-            // onBlur={formik.handleBlur}
-            // onChange={formik.handleChange}
-            // error={
-            //   formik.touched.molileNo && formik.errors.molileNo ? (
-            //     <div className="error-msg">{formik.errors.molileNo}</div>
-            //   ) : null
-            // }
+            value={searchedData}
+            onChange={(e) => searchHandlerWithDebounce(e.target.value)}
           />
         </div>
         <div className="nav-list" id="box4">

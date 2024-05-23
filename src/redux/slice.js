@@ -8,6 +8,8 @@ const initialState = {
     mobileNo: "",
   },
   isShowUserInfo: false,
+  searchedData: "",
+  fetchSearch: [],
 };
 const userSlices = createSlice({
   name: "userDetails",
@@ -28,6 +30,12 @@ const userSlices = createSlice({
     setIsShowUserInfo(state, action) {
       state.isShowUserInfo = action.payload;
     },
+    setSearchedData(state, action) {
+      state.searchedData = action.payload;
+    },
+    setFetchSearch(state, action) {
+      state.fetchSearch = action.payload;
+    },
   },
 });
 
@@ -38,5 +46,7 @@ export const {
   setIsOpenInfoOverlay,
   setNoOfItemInCart,
   setIsShowUserInfo,
+  setSearchedData,
+  setFetchSearch,
 } = userSlices.actions;
 // export default createSlice.reducer;

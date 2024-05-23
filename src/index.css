@@ -262,8 +262,8 @@ ul {
 }
 
 .equipment-img {
-  width: 160px;
-  height: 160px;
+  width: inherit;
+  height: inherit;
 }
 
 .card-container {
@@ -402,4 +402,9 @@ ul {
 .login-footer {
   display: flex;
   gap: 15px;
+}
+
+.image-container {
+  width: 145px;
+  height: 160px;
 }
