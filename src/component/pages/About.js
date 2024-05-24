@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import useTimer from "../utils/useTimer";
-
+import "./about.css";
 function About() {
   const { countDown, reset } = useTimer(90);
 
@@ -14,9 +14,9 @@ function About() {
   };
 
   return (
-    <section className="container flex card flex-justfy ">
+    <section className="container about">
       <div>
-        <h1>{formetTime(countDown)}</h1>
+        <h2>{formetTime(countDown)}</h2>
       </div>
       <button className="secondery-btn" onClick={reset}>
         Reset
