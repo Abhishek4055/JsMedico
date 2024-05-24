@@ -107,6 +107,11 @@ ul {
   transform: scale(1.1);
 }
 
+.disabled-btn {
+  background-color: #b3b3b3;
+  color: #686d6e !important;
+}
+
 .form-container {
   padding: 3px;
 }

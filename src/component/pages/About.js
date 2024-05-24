@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import useTimer from "../utils/useTimer";
 import "./about.css";
+import Button from "../Button";
 function About() {
-  const { countDown, reset } = useTimer(90);
+  const { countDown, reset, stop, start, isRunning } = useTimer(90);
 
   const formetTime = (time) => {
     let minutes = Math.floor(time / 60);
@@ -18,9 +19,25 @@ function About() {
       <div>
         <h2>{formetTime(countDown)}</h2>
       </div>
-      <button className="secondery-btn" onClick={reset}>
-        Reset
-      </button>
+      <div className="flex login-form">
+        <Button className="secondery-btn" onClick={reset}>
+          Reset
+        </Button>
+        <Button
+          className={`primery-btn  ${isRunning ? "disabled-btn" : ""}`}
+          onClick={stop}
+          disabled={isRunning}
+        >
+          Stop
+        </Button>
+        <Button
+          className={`primery-btn ${isRunning ? "" : "disabled-btn"}`}
+          onClick={start}
+          disabled={!isRunning}
+        >
+          Start
+        </Button>
+      </div>
     </section>
   );
 }
