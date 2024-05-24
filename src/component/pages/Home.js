@@ -49,6 +49,7 @@ const Home = () => {
   useEffect(() => {
     searchHandlerWithDebounce(searchedData);
   }, [searchedData]);
+
   return (
     <section className="container flex card flex-justfy-around">
       {fetchSearch.length > 0 &&
