@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsLogin, setUsersData } from "../redux/slice";
-import Button from "./Button";
+import { setIsLogin, setUsersData } from "../redux/userSlice";
+import Button from "./utils/Button";
 
 function OtpComp({ length, mobileNo, onResetHansler }) {
   const dispatch = useDispatch();

@@ -1,27 +1,23 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import { TiThMenu } from "react-icons/ti";
 import { MdOutlineShoppingCart } from "react-icons/md";
-// import { IoHome } from "react-icons/io5";
 import { FaRegUserCircle } from "react-icons/fa";
-// import { GiMedicines } from "react-icons/gi";
-// import { IoSearchCircleOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
-// import { setIsLogin, setIsOpenInfoOverlay, setUsersData } from "../redux/slice";
 import NavList from "./utils/NavList";
-import Button from "./Button";
-import { Link } from "react-router-dom";
 import Input from "./utils/InputComp";
-import { dummyEquipment } from "./dummyData";
-import { setIsShowUserInfo, setSearchedData } from "../redux/slice";
+import { setIsShowUserInfo, setSearchedData } from "../redux/userSlice";
+import { Link } from "react-router-dom";
 
 const Header = () => {
-  const { usersData, noOfItemInCart, isShowUserInfo, searchedData } =
-    useSelector((state) => state.users);
-  const [test, setTest] = useState(searchedData);
+  const { usersData, isShowUserInfo, searchedData } = useSelector(
+    (state) => state.users
+  );
+  const { cartItem } = useSelector((state) => state.cart);
+
+  // const [test, setTest] = useState(searchedData);
   const dispatch = useDispatch();
 
   const searchHandlerWithDebounce = (value) => {
-    // console.log(value);
     dispatch(setSearchedData(value));
   };
 
@@ -32,10 +28,11 @@ const Header = () => {
           <TiThMenu color="white" />
         </div>
         <div className="company-logo" id="box2">
-          <Link to="home" className="flex flex-justfy">
+          <Link to="/" className="flex flex-justfy">
             <img
               className="company-logo-img"
               src={require("./accetes/compani_logo.png")}
+              alt="LOGO"
             />
           </Link>
         </div>
@@ -65,14 +62,16 @@ const Header = () => {
           <h5 className="user-text"> {usersData.name} </h5>
         </div>
         <div className="cart-info" id="box6">
-          <div
-            className="cart-icon"
-            id="box1"
-            onClick={() => console.log("clicked")}
-          >
-            <p className="cart-text"> {noOfItemInCart} </p>
-            <MdOutlineShoppingCart size={30} color="white" />
-          </div>
+          <Link to="/cart">
+            <div
+              className="cart-icon"
+              id="box1"
+              onClick={() => console.log("clicked")}
+            >
+              <p className="cart-text"> {cartItem.length} </p>
+              <MdOutlineShoppingCart size={30} color="white" />
+            </div>
+          </Link>
         </div>
       </div>
     </>

@@ -1,14 +1,15 @@
-import React, { useCallback, useEffect, useState } from "react";
-import OverlayRight from "../utils/Overlay";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setFetchSearch, setIsOpenInfoOverlay } from "../../redux/slice";
+import { setFetchSearch } from "../../redux/userSlice";
 import Card from "../utils/Card";
+import useDebounce from "../customHooks/useDebouncing";
 
 const Home = () => {
   const dispatch = useDispatch();
   const { searchedData, fetchSearch } = useSelector((state) => state.users);
+  const debouncedValue = useDebounce(searchedData, 400);
 
-  const fetchData = async (item) => {
+  async function fetchData(item) {
     try {
       const datas = await fetch(
         `https://dummyjson.com/products/search?q=${item}`,
@@ -34,24 +35,24 @@ const Home = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }
 
-  const debounce = (func, delay) => {
-    let timerId;
-    return (...arg) => {
-      clearTimeout(timerId);
-      timerId = setTimeout(() => func(...arg), delay);
-    };
-  };
+  // const debounce = (func, delay) => {
+  //   let timerId;
+  //   return (...arg) => {
+  //     clearTimeout(timerId);
+  //     timerId = setTimeout(() => func(...arg), delay);
+  //   };
+  // };
 
-  const searchHandlerWithDebounce = useCallback(debounce(fetchData, 400), []);
+  // const searchHandlerWithDebounce = useCallback(debounce(fetchData, 400), []);
 
   useEffect(() => {
-    searchHandlerWithDebounce(searchedData);
-  }, [searchedData]);
+    fetchData(debouncedValue);
+  }, [debouncedValue]);
 
   return (
-    <section className="container flex card flex-justfy-around">
+    <section className="flex card flex-justfy-around">
       {fetchSearch.length > 0 &&
         fetchSearch.map((item, index) => {
           return (

@@ -3,7 +3,7 @@ import Wrapper from "../../Wrapper";
 import Input from "./InputComp";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { setUsersData } from "../../redux/slice";
+import { setUsersData } from "../../redux/userSlice";
 
 const OverlayRight = ({ title, closeOverlay }) => {
   const { usersData } = useSelector((state) => state.users);

@@ -3,8 +3,8 @@ import { useFormik } from "formik";
 import Input from "./InputComp";
 import OtpComp from "../OtpComp";
 import { useDispatch, useSelector } from "react-redux";
-import { setUsersData } from "../../redux/slice";
-import Button from "../Button";
+import { setUsersData } from "../../redux/userSlice";
+import Button from "./Button";
 
 function LoginFrom() {
   const [isShowOtp, setIsShowOtp] = useState(false);
@@ -17,7 +17,7 @@ function LoginFrom() {
       errors.molileNo = "Please enter the Moble No.";
     } else if (
       values.molileNo.length !== 10 ||
-      /[^0-9]/g.test(values.molileNo)
+      /[^\d{10}$]/g.test(values.molileNo)
     ) {
       errors.molileNo = "please enter valied mobile no.";
     }
@@ -41,7 +41,7 @@ function LoginFrom() {
 
   return (
     <>
-      <div className="container flex view-port-hight index">
+      <div className="flex view-port-hight index">
         <div className="login-container flex-direction-colm">
           <div className="login-welcome-header top-banner">
             <h2>Welcome to the JS Medico</h2>

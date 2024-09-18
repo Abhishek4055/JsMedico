@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import useTimer from "../utils/useTimer";
+import React from "react";
+import useTimer from "../customHooks/useTimer";
 import "./about.css";
-import Button from "../Button";
+import Button from "../utils/Button";
 function About() {
   const { countDown, reset, stop, start, isRunning } = useTimer(90);
 

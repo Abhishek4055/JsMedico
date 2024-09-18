@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { dummyMedicins } from "../dummyData";
 import Card from "../utils/Card";
-// import Input from "../utils/InputComp";
 
 const Medicines = () => {
   const [medicine, setMedicine] = useState(dummyMedicins);

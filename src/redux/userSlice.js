@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isLogin: false,
   isOpenInfoOverlay: false,
-  noOfItemInCart: 0,
+  // noOfItemInCart: 0,
   usersData: {
     name: "Abhishek",
     mobileNo: "",
@@ -24,9 +24,9 @@ const userSlices = createSlice({
     setIsOpenInfoOverlay(state, action) {
       state.isOpenInfoOverlay = action.payload;
     },
-    setNoOfItemInCart(state, action) {
-      state.isOpenInfoOverlay = action.payload;
-    },
+    // setNoOfItemInCart(state, action) {
+    //   state.isOpenInfoOverlay = action.payload;
+    // },
     setIsShowUserInfo(state, action) {
       state.isShowUserInfo = action.payload;
     },
@@ -49,4 +49,3 @@ export const {
   setSearchedData,
   setFetchSearch,
 } = userSlices.actions;
-// export default createSlice.reducer;

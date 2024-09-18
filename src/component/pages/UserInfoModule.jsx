@@ -1,7 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsLogin, setIsShowUserInfo, setUsersData } from "../../redux/slice";
-import Button from "../Button";
+import {
+  setIsLogin,
+  setIsShowUserInfo,
+  setUsersData,
+} from "../../redux/userSlice";
+import Button from "../utils/Button";
 
 const UserInfoModule = () => {
   const { isLogin, usersData, isShowUserInfo } = useSelector(
