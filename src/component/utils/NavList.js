@@ -1,41 +1,41 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const NavList = () => {
   return (
     <>
       <ul className="flex flex-justfy-around nav-list">
         <li className="nav-item-list">
-          <Link
+          <NavLink
             className={({ isActive }) => (isActive ? "active" : "")}
             to="/about"
           >
             About
-          </Link>
+          </NavLink>
         </li>
         <li className="nav-item-list">
-          <Link
+          <NavLink
             className={({ isActive }) => (isActive ? "active" : "")}
             to="/home"
           >
             Home
-          </Link>
+          </NavLink>
         </li>
         <li className="nav-item-list">
-          <Link
+          <NavLink
             className={({ isActive }) => (isActive ? "active" : "")}
             to="/equipment"
           >
             Equipment
-          </Link>
+          </NavLink>
         </li>
         <li className="nav-item-list">
-          <Link
+          <NavLink
             className={({ isActive }) => (isActive ? "active" : "")}
             to="/medicines"
           >
             Medicines
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </>

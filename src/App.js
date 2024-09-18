@@ -1,4 +1,4 @@
-import { Provider, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import LoginFrom from "./component/utils/LoginFrom";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import UserInfoModule from "./component/pages/UserInfoModule";
@@ -9,7 +9,6 @@ import EquipmentItems from "./component/pages/EquipmentItem";
 import Medicines from "./component/pages/Medicines";
 import MyCart from "./component/pages/MyCart";
 import Header from "./component/Header";
-import store from "./redux/Store";
 
 export default function App() {
   const { isLogin, isShowUserInfo } = useSelector((state) => state.users);
@@ -49,9 +48,7 @@ export default function App() {
 
   return (
     <>
-      {/* <Provider store={store}> */}
       <RouterProvider router={routerPath} />
-      {/* </Provider> */}
     </>
   );
 }
