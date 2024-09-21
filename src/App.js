@@ -30,6 +30,7 @@ export default function App() {
         </>
       ),
       children: [
+        { index: true, element: <Home /> },
         { path: "/home", element: <Home /> },
         { path: "/about", element: <About /> },
         {
