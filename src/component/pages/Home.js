@@ -1,55 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setFetchSearch } from "../../redux/userSlice";
 import Card from "../utils/Card";
 import useDebounce from "../customHooks/useDebouncing";
+import { fetchData } from "../service/service";
+import { setFetchSearch } from "../../redux/userSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
   const { searchedData, fetchSearch } = useSelector((state) => state.users);
   const debouncedValue = useDebounce(searchedData, 400);
 
-  async function fetchData(item) {
-    try {
-      const datas = await fetch(
-        `https://dummyjson.com/products/search?q=${item}`,
-        {
-          method: "GET",
-          boday: JSON.stringify({
-            q: item,
-          }),
-        }
-      );
-      if (datas.ok) {
-        const resp = await datas.json();
-        const updateResp = resp?.products.map((item) => {
-          return {
-            ...item,
-            brand: item?.title,
-            type: item?.brand,
-            imageUrl: item.thumbnail,
-          };
-        });
-        dispatch(setFetchSearch(updateResp));
+  const handleFetchData = useCallback(
+    async (item) => {
+      const result = await fetchData(item);
+      if (result) {
+        dispatch(setFetchSearch(result));
       }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  // const debounce = (func, delay) => {
-  //   let timerId;
-  //   return (...arg) => {
-  //     clearTimeout(timerId);
-  //     timerId = setTimeout(() => func(...arg), delay);
-  //   };
-  // };
-
-  // const searchHandlerWithDebounce = useCallback(debounce(fetchData, 400), []);
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
-    fetchData(debouncedValue);
-  }, [debouncedValue]);
+    handleFetchData(debouncedValue);
+  }, [debouncedValue, handleFetchData]);
 
   return (
     <section className="flex card flex-justfy-around">

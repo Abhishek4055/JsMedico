@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-  isLogin: false,
+  isLogin: true,
   isOpenInfoOverlay: false,
   // noOfItemInCart: 0,
   usersData: {

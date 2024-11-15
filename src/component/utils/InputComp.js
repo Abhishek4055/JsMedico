@@ -1,35 +1,37 @@
 import React from "react";
 
 function Input({
-  id,
-  label,
-  value,
-  onChange,
-  type,
-  placeholder,
-  name,
+  // id,
+  // label,
+  // value,
+  // onChange,
+  // type,
+  // placeholder,
+  // name,
   error,
-  onBlur,
-  disabled,
+  // onBlur,
+  // disabled,
   formConstainerStyle,
   inputFileldStyle,
   labelStyle,
+  ...rest
 }) {
   return (
     <div className={formConstainerStyle}>
-      <label className={labelStyle} htmlFor={id}>
+      {/* <label className={labelStyle} htmlFor={id}>
         {label}
-      </label>
+      </label> */}
       <input
         className={inputFileldStyle}
-        id={id}
-        type={type}
-        name={name}
-        placeholder={placeholder}
-        onChange={(e) => onChange(e)}
-        onBlur={onBlur}
-        value={value}
-        disabled={disabled}
+        // id={id}
+        // type={type}
+        // name={name}
+        // placeholder={placeholder}
+        // onChange={(e) => onChange(e)}
+        // onBlur={onBlur}
+        // value={value}
+        // disabled={disabled}
+        {...rest}
       />
       {error}
     </div>

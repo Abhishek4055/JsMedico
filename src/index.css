@@ -447,3 +447,12 @@ ul {
   width: 125px;
   height: 175px;
 }
+
+.card-item-img {
+  max-width: 263px;
+  max-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+}

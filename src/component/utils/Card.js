@@ -1,6 +1,6 @@
 import React from "react";
 
-const Card = ({ item, cardStyle }) => {
+const Card = React.memo(({ item, cardStyle }) => {
   return (
     <>
       <div className="image-container">
@@ -14,6 +14,6 @@ const Card = ({ item, cardStyle }) => {
       </div>
     </>
   );
-};
+});
 
 export default Card;

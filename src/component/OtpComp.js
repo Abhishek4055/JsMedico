@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsLogin } from "../redux/userSlice";
 import Button from "./utils/Button";
+import Input from "./utils/InputComp";
 
 function OtpComp({ length, mobileNo, onResetHansler }) {
   const dispatch = useDispatch();
@@ -22,10 +23,12 @@ function OtpComp({ length, mobileNo, onResetHansler }) {
       otpFieldfRef.current[index + 1].focus();
     }
   };
-  const otpOnClick = (e, index) => {
+
+  const otpOnClick = useCallback((e, index) => {
     otpFieldfRef.current[index].setSelectionRange(1, 1);
-  };
-  const otpOnKeyDown = (e, index) => {
+  }, []);
+
+  const otpOnKeyDown = useCallback((e, index) => {
     // move to the focus back on click of back space;
     if (
       e.key === "Backspace" &&
@@ -35,7 +38,7 @@ function OtpComp({ length, mobileNo, onResetHansler }) {
     ) {
       otpFieldfRef.current[index - 1].focus();
     }
-  };
+  }, []);
 
   const onOtpSubmitHandler = useCallback(
     (event, otp) => {

@@ -22,7 +22,7 @@ const EquipmentItems = () => {
   return (
     <section className="flex card flex-justfy-around">
       <div className="cart-container flex">
-        <div>
+        <div className="card-item-img">
           <img
             className="equipment-img"
             src={equipemntItem?.[0]?.imageUrl}
@@ -36,7 +36,7 @@ const EquipmentItems = () => {
           </div>
         </div>
         <div className="cart-item">
-          <h2>Name :{equipemntItem?.[0]?.type}</h2>
+          <h4>Name :{equipemntItem?.[0]?.type}</h4>
           <h4>Rs:{equipemntItem?.[0]?.price}</h4>
         </div>
       </div>

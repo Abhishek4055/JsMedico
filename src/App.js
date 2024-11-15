@@ -1,14 +1,16 @@
 import { useSelector } from "react-redux";
+import { lazy, Suspense } from "react";
 import LoginFrom from "./component/utils/LoginFrom";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import UserInfoModule from "./component/pages/UserInfoModule";
-import Home from "./component/pages/Home";
-import About from "./component/pages/About";
-import Equipment from "./component/pages/Equipment";
-import EquipmentItems from "./component/pages/EquipmentItem";
-import Medicines from "./component/pages/Medicines";
-import MyCart from "./component/pages/MyCart";
 import Header from "./component/Header";
+
+const Home = lazy(() => import("./component/pages/Home"));
+const About = lazy(() => import("./component/pages/About"));
+const Equipment = lazy(() => import("./component/pages/Equipment"));
+const EquipmentItems = lazy(() => import("./component/pages/EquipmentItem"));
+const Medicines = lazy(() => import("./component/pages/Medicines"));
+const MyCart = lazy(() => import("./component/pages/MyCart"));
 
 export default function App() {
   const { isLogin, isShowUserInfo } = useSelector((state) => state.users);
@@ -17,7 +19,7 @@ export default function App() {
       path: "/",
       element: (
         <>
-          {!isLogin && (
+          {isLogin && (
             <div className="login-wraper">
               <LoginFrom />
             </div>
@@ -30,43 +32,58 @@ export default function App() {
         </>
       ),
       children: [
-        { index: true, element: <Home /> },
-        { path: "/home", element: <Home /> },
-        { path: "/about", element: <About /> },
+        {
+          index: true,
+          element: (
+            <Suspense fallback={<p> Loading.... </p>}>
+              <Home />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/home",
+          element: (
+            <Suspense fallback={<p> Loading.... </p>}>
+              <Home />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/about",
+          element: (
+            <Suspense fallback={<p> Loading.... </p>}>
+              <About />
+            </Suspense>
+          ),
+        },
         {
           path: "/equipment",
-          element: <Equipment />,
+          element: (
+            <Suspense fallback={<p> Loading.... </p>}>
+              <Equipment />
+            </Suspense>
+          ),
           children: [{ path: ":equipmentName", element: <EquipmentItems /> }],
         },
-        { path: "/medicines", element: <Medicines /> },
+        {
+          path: "/medicines",
+          element: (
+            <Suspense fallback={<p> Loading.... </p>}>
+              <Medicines />
+            </Suspense>
+          ),
+        },
         {
           path: "/cart",
-          element: <MyCart />,
+          element: (
+            <Suspense fallback={<p> Loading.... </p>}>
+              <MyCart />
+            </Suspense>
+          ),
         },
       ],
     },
   ]);
-
-  // function Test() {}
-
-  // Test.prototype.x = function () {
-  //   return "x";
-  // };
-
-  // function Test2() {
-  //   Test.call(this); // Call the Test constructor inside Test2
-  // }
-
-  // // Set Test2's prototype to inherit from Test
-  // Test2.prototype = Object.create(Test.prototype);
-
-  // // Fix the constructor reference for Test2
-  // Test2.prototype.constructor = Test2;
-
-  // let we = new Test2();
-  // console.log(we.y(), we.x()); // Outputs: "x"
-
-  // console.log(Test2.prototype);
 
   return (
     <>
