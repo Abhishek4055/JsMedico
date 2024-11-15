@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { dummyMedicins } from "../dummyData";
 import Card from "../utils/Card";
 
 const Medicines = () => {
-  const [medicine, setMedicine] = useState(dummyMedicins);
+  const [medicine, setMedicine] = useState([]);
+  useEffect(() => {
+    setMedicine(dummyMedicins);
+  }, []);
   const onCardClick = (type, subitem) => {
     console.log("subitem", subitem);
   };

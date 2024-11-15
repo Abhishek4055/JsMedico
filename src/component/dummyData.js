@@ -1,5 +1,4 @@
 import bipap from "./accetes/Resmed-Lumis150-Bi-pap.jpg";
-import tablets from "./accetes/tablet.jpg";
 import cpap from "./accetes/CPAP-MACHN.jpg";
 import mask from "./accetes/DIFF-TYPES-MASKS.jpg";
 import filter from "./accetes/FILTERS.jpg";
